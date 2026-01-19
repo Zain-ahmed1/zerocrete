@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme{
+    --font-heading: 'Manrope', 'sans-seri';
+    --font-sans: 'Inter', 'sans-serif';
+
+    --color-primary: #059669; /* Main buttons, icons, active links. */
+    --color-accent: #d1fae5; /* Background badges, subtle highlights. */
+    --color-concrete: #0f172a; /* Footer background, primary headings. */
+    --color-rawcon: #475569; /* Paragraph text, secondary icons. */
+    --color-surface: #f8fafc; /* Section backgrounds (light grey). */
+    --color-darkprimary: #047857 /* Main Buttons Hover color */
+}
