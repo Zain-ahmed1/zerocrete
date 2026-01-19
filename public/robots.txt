@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Replace with your actual domain URL
+Sitemap: https://zerocrete.vercel.app/sitemap.xml
