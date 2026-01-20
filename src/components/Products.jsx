@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
-import { X, CheckCircle, ArrowRight, Construction, ShoppingBag } from 'lucide-react';
+import { X, CheckCircle, ArrowRight } from 'lucide-react';
 import InfraCard from "./../assets/infra.jpeg";
-import EcoCard from "./../assets/eco.jpeg"
+import EcoCard from "./../assets/eco.jpeg";
 import { styles } from '../Styles';
 
 const Products = () => {
     const [activeModal, setActiveModal] = useState(null);
+
+    const handleCtaClick = () => {
+        setActiveModal(null);
+
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     // Data for the Modals
     const productDetails = {
@@ -48,15 +57,9 @@ const Products = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
 
                     {/* --- Product 1: Infrastructure --- */}
-                    <div className="group bg-white rounded-2xl overflow-hidden border border-primarbg-primary shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
-                        {/* Image Placeholder - Replace src with your paving image */}
+                    <div className="group bg-white rounded-2xl overflow-hidden border border-primary shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
                         <div className="h-48 md:h-64 bg-slate-200 relative overflow-hidden">
-                            {/* Use an actual <img> tag here. For now, using a placeholder icon style */}
-                            {/* <div className="absolute inset-0 flex items-center justify-center bg-slate-200 group-hover:scale-105 transition-transform duration-700">
-                                <Construction size={64} className="text-slate-400" />
-                            </div> */}
-                            <img src={InfraCard} alt="" className="absolute inset-0 flex items-center justify-center bg-slate-200 group-hover:scale-110 scale-105 transition-transform duration-700 " />
-                            {/* Overlay Tag */}
+                            <img src={InfraCard} alt="Infrastructure Pavements" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 scale-105 transition-transform duration-700" />
                             <div className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
                                 Industrial Grade
                             </div>
@@ -79,14 +82,9 @@ const Products = () => {
                     </div>
 
                     {/* --- Product 2: Eco-Decor --- */}
-                    <div className="group bg-white rounded-2xl overflow-hidden border border-primarbg-primary shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
-                        {/* Image Placeholder - Replace src with your pot/tile image */}
+                    <div className="group bg-white rounded-2xl overflow-hidden border border-primary shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
                         <div className="h-48 md:h-64 bg-slate-200 relative overflow-hidden">
-                            {/* <div className="absolute inset-0 flex items-center justify-center bg-slate-200 group-hover:scale-105 transition-transform duration-700">
-                                <ShoppingBag size={64} className="text-slate-400" />
-                            </div> */}
-                            <img src={EcoCard} alt="" className="absolute inset-0 flex items-center justify-center bg-slate-200 group-hover:scale-110 scale-105 transition-transform duration-700" />
-                            {/* Overlay Tag */}
+                            <img src={EcoCard} alt="Eco Decor Pots" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 scale-105 transition-transform duration-700" />
                             <div className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
                                 Store Launching Soon
                             </div>
@@ -114,7 +112,7 @@ const Products = () => {
             {/* --- POPUP MODAL --- */}
             {activeModal && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-concrete/60 backdrop-blur-sm animate-in fade-in duration-200" onClick={() => setActiveModal(null)}>
-                    <div className="bg-white rounded-2xl max-w-lg w-full shadow-2xl overflow-hidden relative animate-in zoom-in-95 duration-200">
+                    <div className="bg-white rounded-2xl max-w-lg w-full shadow-2xl overflow-hidden relative animate-in zoom-in-95 duration-200" onClick={(e) => e.stopPropagation()}>
 
                         {/* Close Button */}
                         <button
@@ -126,7 +124,7 @@ const Products = () => {
 
                         {/* Modal Header */}
                         <div className="bg-slate-50 p-8 border-b border-slate-100">
-                            <div className="inline-block px-3 py-1 rounded-full bg-emerald-100 text-darkbg-darkprimary text-xs font-bold mb-3">
+                            <div className="inline-block px-3 py-1 rounded-full bg-emerald-100 text-darkprimary text-xs font-bold mb-3">
                                 {productDetails[activeModal].status}
                             </div>
                             <h3 className="font-heading text-3xl font-bold text-concrete">
@@ -152,7 +150,11 @@ const Products = () => {
                                 ))}
                             </ul>
 
-                            <button className="w-full py-4 rounded-xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-colors flex items-center justify-center gap-2">
+                            {/* --- UPDATED CTA BUTTON --- */}
+                            <button
+                                onClick={handleCtaClick}
+                                className="w-full py-4 rounded-xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-colors flex items-center justify-center gap-2"
+                            >
                                 {productDetails[activeModal].cta} <ArrowRight size={18} />
                             </button>
                         </div>
@@ -165,4 +167,4 @@ const Products = () => {
     );
 };
 
-export default Products; 
+export default Products;

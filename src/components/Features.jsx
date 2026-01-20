@@ -3,7 +3,7 @@ import { Leaf, Recycle, Layers } from 'lucide-react';
 import { styles } from '../Styles';
 
 const Features = () => (
-    <section id="mission" className="py-16 md:py-20 bg-white">
+    <section id="mission" className="py-16 md:py-16 bg-white">
         <div className={` ${styles.SectionWidth} px-4 sm:px-6 lg:px-8`}>
 
             {/* Centered Heading */}
@@ -17,7 +17,7 @@ const Features = () => (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
                 {/* Card 1: Eco-Friendly */}
-                <div className="p-8 rounded-2xl bg-slate-50 border border-emerald-500 hover:shadow-lg transition-shadow duration-300">
+                <div className="p-8 rounded-2xl bg-slate-50 border border-primary hover:shadow-lg transition-shadow duration-300">
                     <div className="mb-6">
                         <Leaf size={48} className="text-emerald-600" />
                     </div>
@@ -30,7 +30,7 @@ const Features = () => (
                 </div>
 
                 {/* Card 2: Circular Economy */}
-                <div className="p-8 rounded-2xl bg-slate-50 border border-emerald-500 hover:shadow-lg transition-shadow duration-300">
+                <div className="p-8 rounded-2xl bg-slate-50 border border-primary hover:shadow-lg transition-shadow duration-300">
                     <div className="mb-6">
                         <Recycle size={48} className="text-blue-600" />
                     </div>
@@ -43,7 +43,7 @@ const Features = () => (
                 </div>
 
                 {/* Card 3: High Durability */}
-                <div className="p-8 rounded-2xl bg-slate-50 border border-emerald-500 hover:shadow-lg transition-shadow duration-300">
+                <div className="p-8 rounded-2xl bg-slate-50 border border-primary hover:shadow-lg transition-shadow duration-300">
                     <div className="mb-6">
                         <Layers size={48} className="text-rawcon" />
                     </div>

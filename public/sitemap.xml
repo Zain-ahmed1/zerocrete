@@ -4,9 +4,33 @@
 
   <url>
     <loc>https://zerocrete.vercel.app/</loc>
-    <lastmod>2026-01-19</lastmod>
+    <lastmod>2026-01-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+
+    <image:image>
+      <image:loc>https://zerocrete.vercel.app/images/infra.jpg</image:loc>
+      <image:title>ZeroCrete Sustainable Infrastructure Pavements</image:title>
+      <image:caption>Heavy-duty geopolymer pavement blocks made from industrial waste.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://zerocrete.vercel.app/images/eco.jpeg</image:loc>
+      <image:title>ZeroCrete Eco-Decor Garden Pots</image:title>
+      <image:caption>Aesthetic concrete garden pots and tiles.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://zerocrete.vercel.app/images/block.png</image:loc>
+      <image:title>Geopolymer Concrete Block Prototype</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://zerocrete.vercel.app/careers</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
 </urlset>

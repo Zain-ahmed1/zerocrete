@@ -20,7 +20,7 @@ const Technology = () => (
 
                 {/* --- Step 01: Raw Materials --- */}
                 <div className="flex flex-col items-center text-center w-full md:w-1/3 px-4">
-                    <div className="font-heading text-3xl font-bold text-emerald-400 mb-4 md:mb-8">01</div>
+                    <div className="font-heading text-3xl font-bold text-primary/90 mb-4 md:mb-8">01</div>
 
                     <div className="h-32 flex items-center justify-center mb-6">
                         <img
@@ -41,12 +41,12 @@ const Technology = () => (
                 {/* ARROW 1 ----------------------------------------------- */}
 
                 {/* Desktop: Point Right */}
-                <div className="hidden md:flex text-emerald-500 pt-28 justify-center w-12">
+                <div className="hidden md:flex text-primary pt-28 justify-center w-12">
                     <ArrowRight size={32} strokeWidth={2} />
                 </div>
 
                 {/* Mobile: Point Down (Rotated 90 degrees) */}
-                <div className="md:hidden text-emerald-500 my-4 transform rotate-90">
+                <div className="md:hidden text-primary my-4 transform rotate-90">
                     <ArrowRight size={32} strokeWidth={2} />
                 </div>
 
@@ -54,7 +54,7 @@ const Technology = () => (
 
                 {/* --- Step 02: Activation --- */}
                 <div className="flex flex-col items-center text-center w-full md:w-1/3 px-4">
-                    <div className="font-heading text-3xl font-bold text-emerald-400 mb-4 md:mb-8">02</div>
+                    <div className="font-heading text-3xl font-bold text-primary/90 mb-4 md:mb-8">02</div>
 
                     <div className="h-32 flex items-center justify-center mb-6">
                         <FlaskConical strokeWidth={1.5} size={80} className="text-white" />
@@ -67,12 +67,12 @@ const Technology = () => (
                 {/* ARROW 2 ----------------------------------------------- */}
 
                 {/* Desktop: Point Right */}
-                <div className="hidden md:flex text-emerald-500 pt-28 justify-center w-12">
+                <div className="hidden md:flex text-primary pt-28 justify-center w-12">
                     <ArrowRight size={32} strokeWidth={2} />
                 </div>
 
                 {/* Mobile: Point Down (Rotated 90 degrees) */}
-                <div className="md:hidden text-emerald-500 my-4 transform rotate-90">
+                <div className="md:hidden text-primary my-4 transform rotate-90">
                     <ArrowRight size={32} strokeWidth={2} />
                 </div>
 
@@ -80,10 +80,10 @@ const Technology = () => (
 
                 {/* --- Step 03: Geopolymer --- */}
                 <div className="flex flex-col items-center text-center w-full md:w-1/3 px-4">
-                    <div className="font-heading text-3xl font-bold text-emerald-400 mb-4 md:mb-8">03</div>
+                    <div className="font-heading text-3xl font-bold text-primary/90 mb-4 md:mb-8">03</div>
 
                     <div className="h-32 flex items-center justify-center mb-6 relative group">
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-emerald-500/70 blur-2xl rounded-full"></div>
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-primary/70 blur-2xl rounded-full"></div>
                         <img
                             src={Block}
                             alt="Geopolymer Block"

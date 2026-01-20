@@ -12,7 +12,7 @@ export default function Hero() {
             >
                 <div className={`${styles.SectionWidth} flex flex-col justify-center items-start`}>
                     <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl font-extrabold text-concrete tracking-tight mb-6">
-                        Concrete Without <br/><span className="text-emerald-600">Carbon.</span>
+                        Concrete Without <br/><span className="text-primary">Carbon.</span>
                     </h1>
 
                     <p className=" max-w-xl mx-0 text-[16px] md:text-xl text-rawcon mb-6">

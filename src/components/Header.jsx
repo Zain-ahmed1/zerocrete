@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-scroll' // Import Link from react-scroll
+import { Link as ScrollLink } from 'react-scroll' // Renamed to ScrollLink to avoid confusion
+import { useNavigate, useLocation } from 'react-router-dom' // Added Router hooks
 import Logo from "./../assets/logo.png"
 import { styles } from '../Styles'
 import { Twirl as Hamburger } from 'hamburger-react'
 
+// Added 'isPage' to distinguish between scroll sections and actual pages
 const NavLinks = [
-    { id: "mission", title: "Features" },
-    { id: "tech", title: "Technology" },
-    { id: "products", title: "Products" },
-    { id: "contact", title: "Contact" },
+    { id: "about", title: "About", isPage: false },
+    { id: "mission", title: "Features", isPage: false },
+    { id: "tech", title: "Technology", isPage: false },
+    { id: "products", title: "Products", isPage: false },
+    { id: "careers", title: "Careers", isPage: true, path: "/careers" },
 ]
 
 function useIsMobile(breakpoint = 768) {
@@ -16,7 +19,7 @@ function useIsMobile(breakpoint = 768) {
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < breakpoint)
-        handleResize() // Check on mount
+        handleResize()
         window.addEventListener('resize', handleResize)
         return () => window.removeEventListener('resize', handleResize)
     }, [breakpoint])
@@ -29,12 +32,13 @@ export default function Header() {
     const [isOpen, setIsOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
 
-    // Close mobile menu when switching to desktop
+    const navigate = useNavigate()
+    const location = useLocation()
+
     useEffect(() => {
         if (!isMobile) setIsOpen(false)
     }, [isMobile])
 
-    // Add shadow to navbar on scroll
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 10) {
@@ -47,23 +51,43 @@ export default function Header() {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    // Common props for the Link component to avoid repetition
-    const linkProps = {
-        spy: true,           // Update active class on scroll
-        smooth: true,        // Enable smooth scrolling
-        offset: -60,         // Offset for the sticky header height
-        duration: 500,       // Scroll duration
-        activeClass: "text-emerald-600 font-medium", 
-        className: "cursor-pointer hover:text-emerald-500 transition-colors duration-300"
+    const scrollLinkProps = {
+        spy: true,
+        smooth: true,
+        offset: -50,
+        duration: 300,
+        activeClass: "text-darkprimary font-medium",
+        className: "cursor-pointer hover:text-primary transition-colors duration-300"
+    }
+
+    const handleNavClick = (link) => {
+        setIsOpen(false);
+
+        if (link.isPage) {
+
+            navigate(link.path);
+            window.scrollTo(0, 0);
+        } else {
+            if (location.pathname !== '/') {
+                navigate('/', {
+                    state: { scrollTo: link.id }
+                });
+            } else {
+                const element = document.getElementById(link.id);
+                if (element) {
+                    // Using scroller here too keeps behavior consistent
+                    // or rely on the <ScrollLink> in the JSX
+                }
+            }
+        }
     }
 
     return (
         <>
-            {/* Mobile Menu Overlay */}
             {isMobile && (
                 <div
                     className={`
-                    fixed inset-0 bg-black/60 z-40 backdrop-blur-xs
+                    fixed inset-0 bg-black/60 z-40 backdrop-blur-sm
                     transition-opacity duration-300 ease-out
                     ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
                 `}
@@ -79,25 +103,37 @@ export default function Header() {
             >
                 <div className={`${styles.SectionWidth} flex justify-between items-center`}>
 
-                    {/* Logo - Scroll to top when clicked */}
-                    <a href="/"  className="cursor-pointer">
+                    <div onClick={() => navigate('/')} className="cursor-pointer">
                         <img src={Logo} alt="ZeroCrete" className="w-40 max-w-48 min-w-36" />
-                    </a>
+                    </div>
 
                     {/* DESKTOP NAV */}
                     {!isMobile && (
                         <ul className="flex items-center list-none">
                             {NavLinks.map(link => (
                                 <li key={link.id} className="mx-4">
-                                    <Link
-                                        to={link.id}
-                                        {...linkProps}
-                                    >
-                                        {link.title}
-                                    </Link>
+                                    {link.isPage || location.pathname !== '/' ? (
+                                        // Renders as a standard button/link if it's a Page OR we aren't on Home
+                                        <button
+                                            onClick={() => handleNavClick(link)}
+                                            className={`${scrollLinkProps.className} ${location.pathname === link.path ? "text-darkprimary font-medium" : "text-rawcon"}`}
+                                        >
+                                            {link.title}
+                                        </button>
+                                    ) : (
+                                        // Renders as a Scroll Link ONLY if on Home Page and targeting a section
+                                        <ScrollLink
+                                            to={link.id}
+                                            {...scrollLinkProps}
+                                        >
+                                            {link.title}
+                                        </ScrollLink>
+                                    )}
                                 </li>
                             ))}
-                           
+                            <ScrollLink to='contact' smooth={true} duration={500} className='bg-primary border-primary border rounded-lg text-white py-2 px-4 hover:bg-darkprimary transition duration-150 text-center cursor-pointer'>
+                                Contact
+                            </ScrollLink>
                         </ul>
                     )}
 
@@ -118,14 +154,23 @@ export default function Header() {
                             >
                                 {NavLinks.map(link => (
                                     <li key={link.id} className="w-full text-center p-4 border-b border-slate-50 last:border-none">
-                                        <Link
-                                            to={link.id}
-                                            {...linkProps}
-                                            onClick={() => setIsOpen(false)} // Close menu on click
-                                            className="text-lg font-medium text-slate-700 hover:text-emerald-600 block w-full h-full"
-                                        >
-                                            {link.title}
-                                        </Link>
+                                        {link.isPage || location.pathname !== '/' ? (
+                                            <button
+                                                onClick={() => handleNavClick(link)}
+                                                className="text-lg font-medium text-slate-700 hover:text-darkprimary block w-full h-full"
+                                            >
+                                                {link.title}
+                                            </button>
+                                        ) : (
+                                            <ScrollLink
+                                                to={link.id}
+                                                {...scrollLinkProps}
+                                                onClick={() => setIsOpen(false)}
+                                                className="text-lg font-medium text-slate-700 hover:text-darkprimary block w-full h-full"
+                                            >
+                                                {link.title}
+                                            </ScrollLink>
+                                        )}
                                     </li>
                                 ))}
                             </ul>

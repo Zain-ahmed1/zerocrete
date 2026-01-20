@@ -1,20 +1,30 @@
 import React from 'react'
-import Hero from './components/Hero'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
+// Layout Components
 import Header from './components/Header'
-import Features from './components/Features'
-import Technology from './components/Technology'
-import Products from './components/Products'
 import Footer from './components/Footer'
+import Home from './components/pages/Home'
+import Careers from './components/pages/careers'
+
+// Page Components
 
 export default function App() {
   return (
-    <>
-      <Header />
-      <Hero />
-      <Features />
-      <Technology />
-      <Products />
-      <Footer />
-    </>
+    <Router>
+      <div className="flex flex-col min-h-screen">
+        <Header />
+
+        {/* The Routes switch which component is shown based on URL */}
+        <main className="grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/careers" element={<Careers />} />
+          </Routes>
+        </main>
+
+        <Footer />
+      </div>
+    </Router>
   )
 }
