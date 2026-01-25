@@ -7,6 +7,7 @@ import Technology from './../Technology'
 import Products from './../Products'
 import Roadmap from './../Roadmap'
 import About from '../About'
+import FAQ from '../FAQ'
 
 const Home = () => {
     const location = useLocation()
@@ -33,6 +34,7 @@ const Home = () => {
             <Technology />
             <Roadmap />
             <Products />
+            <FAQ />
         </>
     )
 }

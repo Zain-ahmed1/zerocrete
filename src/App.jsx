@@ -6,13 +6,14 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './components/pages/Home'
 import Careers from './components/pages/careers'
+import WhatsAppBtn from './components/WhatsAppBtn'
 
 // Page Components
 
 export default function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen relative">
         <Header />
 
         {/* The Routes switch which component is shown based on URL */}
@@ -24,6 +25,7 @@ export default function App() {
         </main>
 
         <Footer />
+        <WhatsAppBtn />
       </div>
     </Router>
   )
