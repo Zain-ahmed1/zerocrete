@@ -6,7 +6,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './components/pages/Home'
 import Careers from './components/pages/careers'
-import WhatsAppBtn from './components/WhatsAppBtn'
+import ZeroCreteAIChat from './components/ZeroCreteAIChat'
 
 // Page Components
 
@@ -25,7 +25,7 @@ export default function App() {
         </main>
 
         <Footer />
-        <WhatsAppBtn />
+        <ZeroCreteAIChat />
       </div>
     </Router>
   )
