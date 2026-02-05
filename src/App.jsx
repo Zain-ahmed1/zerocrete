@@ -6,7 +6,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './components/pages/Home'
 import Careers from './components/pages/careers'
-import ZeroCreteAIChat from './components/ZeroCreteAIChat'
+import ChatBot from './components/ChatBot'
 
 // Page Components
 
@@ -25,7 +25,8 @@ export default function App() {
         </main>
 
         <Footer />
-        <ZeroCreteAIChat />
+
+        <ChatBot />
       </div>
     </Router>
   )
